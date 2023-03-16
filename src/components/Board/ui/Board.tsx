@@ -20,7 +20,7 @@ export const Board: FC<BoardProps> = () => {
         if(event.key.match(/^[а-яА-ЯёЁ\s]+$/)){
             dispatch(boardActions.ADD_LETTER(event.key))
         } else if(event.key === 'Enter'){
-            dispatch(boardActions.ADD_WORD())
+            dispatch(boardActions.EVALUATE_ROW())
         } else if(event.key === 'Backspace'){
             dispatch(boardActions.DELETE_LETTER());
         }
@@ -36,11 +36,11 @@ export const Board: FC<BoardProps> = () => {
 
     return (
         <div className={cls.board}>
-            <Row word={words[0]}/>
-            <Row word={words[1]}/>
-            <Row word={words[2]}/>
-            <Row word={words[3]}/>
-            <Row word={words[4]}/>
+            <Row id={0} word={words[0]}/>
+            <Row id={1} word={words[1]}/>
+            <Row id={2} word={words[2]}/>
+            <Row id={3} word={words[3]}/>
+            <Row id={4} word={words[4]}/>
         </div>
     );
 };
