@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { guessWord } from '../../../../shared/service/guessWord';
 import { BoardSchema } from '../types/BoardSchema';
 import { variantStatus } from '../types/BoardSchema';
 
@@ -7,14 +8,23 @@ const initialState: BoardSchema = {
     rowStatus: [[3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3],[3, 3, 3, 3, 3, 3],[3, 3, 3, 3, 3, 3]],
     currentRow: 0,
     currentWord: '',
-    correctAnswer: 'загон',
-    status: false,
+    correctAnswer: '',
+    status: 'playing',
 };
 
 export const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
+        PLAY: (state) => {
+            state.words = ['', '', '', '', '', ''];
+            state.rowStatus = [[3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3], [3, 3, 3, 3, 3, 3],[3, 3, 3, 3, 3, 3],[3, 3, 3, 3, 3, 3]],
+            state.currentRow = 0;
+            state.status = 'playing';
+            state.correctAnswer = guessWord();
+            state.currentWord = '';
+        },
+
         ADD_LETTER: (state, action) => {
             if(state.words[state.currentRow].length < 5){
                 state.currentWord += action.payload.toLowerCase();
@@ -25,6 +35,10 @@ export const boardSlice = createSlice({
         DELETE_LETTER: (state) => {
             state.words[state.currentRow] = state.words[state.currentRow].slice(0, -1);
             state.currentWord = state.currentWord.slice(0, -1);
+        },
+
+        GUESS_WORD: (state, action) => {
+            state.correctAnswer = action.payload;
         },
 
         EVALUATE_ROW: (state) => {
@@ -40,18 +54,15 @@ export const boardSlice = createSlice({
                         return variantStatus.NOT_EXIST;
                     }
                 })
-                // state.rowStatus.push(rowStatusItem);
                 state.rowStatus[state.currentRow] = rowStatusItem;
                 if(rowStatusItem.reduce((acc, cur) => acc + cur) === 0){
-                    state.status = true;
+                    state.status = 'win';
                 }
-
-                console.log(word);
-                console.log(row);
-                console.log(rowStatusItem);
-
             } 
             state.currentRow++;
+            if(state.currentRow === 6){
+                state.status = 'loss'
+            }
         }
     },
 });

@@ -1,4 +1,4 @@
-import { boardReducer, boardSlice } from './../../components/Board/model/slice/boardSlice';
+import { boardReducer, boardSlice } from './../../../components/Board/index';
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { StateSchema } from "./StateSchema";
 

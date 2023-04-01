@@ -1,4 +1,4 @@
-import { StateSchema } from './../../../../StoreProvider/config/StateSchema';
+import { StateSchema } from './../../../../../src/app/StoreProvider/index';
 import { getBoardState } from './getBoardState';
 
 

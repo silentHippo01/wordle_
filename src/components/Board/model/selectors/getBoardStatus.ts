@@ -1,3 +1,4 @@
 import { StateSchema } from './../../../../../src/app/StoreProvider/index';
 
-export const getBoardState = (state: StateSchema) => state?.board;
+
+export const getBoardStatus = (state: StateSchema) => state.board.status; 

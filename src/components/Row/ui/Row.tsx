@@ -1,10 +1,9 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoardCorrectAnswer } from '../../Board/model/selectors/getBoardCorrectAnswer';
 import { getBoardStatusRow } from '../../Board/model/selectors/getBoardStatusRow';
 import Cell from '../../Cell/Cell';
-import { Navbar } from '../../Navbar';
 import cls from './Row.module.scss';
 
 interface RowProps{
@@ -14,7 +13,9 @@ interface RowProps{
     classname?: string;
 }
 
-const Row = (props: RowProps) => {
+const Row = memo((props: RowProps) => {
+
+    console.log('Row render');
 
     const {
         id,
@@ -22,10 +23,8 @@ const Row = (props: RowProps) => {
         classname,
     } = props;
 
-    // const correctAnswer = useSelector(getBoardCorrectAnswer).split('');
     const letters = word.split('');
     const statusRow = useSelector(getBoardStatusRow);
-    console.log('statusRow: ' + statusRow);
 
     return (
         <div className={classNames(cls.row, {}, [classname])}> 
@@ -36,6 +35,6 @@ const Row = (props: RowProps) => {
             <Cell value={letters[4]} status={statusRow != undefined ? statusRow[id][4] : 3}/>
         </div>
     );
-};
+});
 
 export default Row;

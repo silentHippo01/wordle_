@@ -1,10 +1,14 @@
 import { render } from "react-dom";
 import { App } from "./App";
-import { StoreProvider } from "./StoreProvider";
+import { ThemeProvider } from "./app/Providers/ThemeProvider";
+import { StoreProvider } from "./app/StoreProvider/index";
+import './app/styles/index.scss'
 
 render(
     <StoreProvider>
-        <App />,
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
     </StoreProvider>,
     document.getElementById('root'),
 )

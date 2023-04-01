@@ -5,8 +5,7 @@ export interface BoardSchema {
     currentWord: string,
     currentRow: number,
     correctAnswer: string,
-    status: boolean,
-
+    status: Game_status,
 }
 
 export interface rowStatus {
@@ -18,3 +17,5 @@ export enum variantStatus {
     WRONG_POSITION,
     NOT_EXIST,
 }
+
+export type Game_status = 'playing' | 'win' | 'loss';

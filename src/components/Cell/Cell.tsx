@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 import { statusCell } from "../../types";
 import { variantStatus } from "../Board/model/types/BoardSchema";
 import cls from './Cell.module.scss';
@@ -10,12 +10,14 @@ interface CellProps {
     children?: ReactNode;
 }
 
-const Cell = (props: CellProps) => {
+const Cell = memo((props: CellProps) => {
+
+    console.log('Cell render');
+
     let {
         value,
         status,
     } = props;
-    console.log(status)
 
     const mods: Record<string, boolean> = {
         [cls.rightPosition]: status === variantStatus.RIGHT_POSITION,
@@ -27,6 +29,6 @@ const Cell = (props: CellProps) => {
             {value}
         </div>
     );
-};
+});
 
 export default Cell;
