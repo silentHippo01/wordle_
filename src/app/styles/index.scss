@@ -1,4 +1,4 @@
-@import 'variables/global.scss';
+@import 'variables/global';
 @import 'reset.scss';
 @import 'themes/normal.scss';
 @import 'themes/dark.scss';
@@ -6,5 +6,9 @@
 .app{
     height: 100vh;
     background-color: var(--bg-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+.app_modal {
     font-family: 'Roboto', sans-serif;
 }

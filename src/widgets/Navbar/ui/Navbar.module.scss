@@ -1,0 +1,32 @@
+.Navbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 32px;
+    border-bottom: 1px solid #cac5c5;
+}
+
+.title{
+    color: var(--title-color);
+    font-weight: bold;
+    justify-self: center;
+}
+
+.rulesBtn{
+    background-color: transparent;
+    border: none;
+    font-size: var(--font-size);
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--font-color);
+    margin-right: 20px;
+}
+
+.interface{
+    display: flex;
+    right: 50px;
+    position: absolute;
+}

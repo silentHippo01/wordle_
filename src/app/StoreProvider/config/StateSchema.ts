@@ -1,4 +1,4 @@
-import { BoardSchema } from "./../../../components/Board/index";
+import { BoardSchema } from "widgets/Board/index";
 
 export interface StateSchema{
     board: BoardSchema;
